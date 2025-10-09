@@ -2,27 +2,27 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isButtonPressed = false
-    @State private var logoAppear = false // состояние появления лого
+    @State private var logoAppear = false
     
 
     var body: some View {
         VStack {
             Spacer()
             
-            // MARK: - Logo with Animation"
+            // MARK: - Logo with Animation
             HStack(spacing: 8) {
                 Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 120, height: 120)
-                    .scaleEffect(logoAppear ? 1.0 : 0.5) // масштаб при появлении
-                    .opacity(logoAppear ? 1.0 : 0.0)    // прозрачность при появлении
+                    .scaleEffect(logoAppear ? 1.0 : 0.5)
+                    .opacity(logoAppear ? 1.0 : 0.0)
                     .animation(.spring(response: 1.2, dampingFraction: 0.5), value: logoAppear)
                     .onAppear {
                         logoAppear = true
                     }
             }
-            
+            // MARK: - Text Under The Logo"
             Text("One Loop")
                 .font(.custom("Avenir Next", size: 48))
                 .fontWeight(.bold)
@@ -34,6 +34,7 @@ struct ContentView: View {
             
             Spacer()
             
+            // MARK: - Haptics of the Button
             Button(action: {
                 let generator = UIImpactFeedbackGenerator(style: .medium)
                 generator.impactOccurred()
@@ -41,6 +42,7 @@ struct ContentView: View {
                 withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                     isButtonPressed.toggle()
                 }
+                // MARK: - Button Begin Adventure with sf symbols
             }) {
                 HStack {
                     Image(systemName: "laurel.leading")
@@ -70,6 +72,7 @@ struct ContentView: View {
     }
 }
 
+// MARK: - For Canvas
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
