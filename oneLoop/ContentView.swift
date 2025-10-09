@@ -1,53 +1,77 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var logoAppear = false
-    @State private var buttonAppear = false
+    @State private var isButtonPressed = false
+    @State private var logoAppear = false // состояние появления лого
+    
 
     var body: some View {
-        ZStack {
-            LinearGradient(colors: [.white, .gray.opacity(0.05)],
-                           startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
-
-            VStack {
-                Spacer()
-
-                Image("Logo")
+        VStack {
+            Spacer()
+            
+            // MARK: - Logo with Animation"
+            HStack(spacing: 8) {
+                Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 140)
-                    .opacity(logoAppear ? 1 : 0)
-                    .scaleEffect(logoAppear ? 1 : 0.8)
-                    .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                    .animation(.spring(response: 1.0, dampingFraction: 0.7).delay(0.2), value: logoAppear)
-
-                Spacer()
-
-                Button(action: {}) {
+                    .frame(width: 120, height: 120)
+                    .scaleEffect(logoAppear ? 1.0 : 0.5) // масштаб при появлении
+                    .opacity(logoAppear ? 1.0 : 0.0)    // прозрачность при появлении
+                    .animation(.spring(response: 1.2, dampingFraction: 0.5), value: logoAppear)
+                    .onAppear {
+                        logoAppear = true
+                    }
+            }
+            
+            Text("One Loop")
+                .font(.custom("Avenir Next", size: 48))
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+            
+            Text("One Loop, a Loop of Adventures.")
+                .font(.custom("Avenir Next", size: 16))
+                .foregroundColor(.gray)
+            
+            Spacer()
+            
+            Button(action: {
+                let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+                
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                    isButtonPressed.toggle()
+                }
+            }) {
+                HStack {
+                    Image(systemName: "laurel.leading")
+                        .foregroundColor(.white)
+                        .symbolEffect(.wiggle)
                     Text("Begin Adventure")
+                        .animation(.spring(response: 1.2, dampingFraction: 0.5), value: logoAppear)
+                        .fontWeight(.bold)
                         .font(.system(.headline, design: .rounded))
                         .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.accentColor)
-                        .cornerRadius(14)
-                        .shadow(radius: 6, y: 3)
-                        .padding(.horizontal, 48)
-                        .padding(.bottom, 30)
+                    Image(systemName: "laurel.trailing")
+                        .foregroundColor(.white)
+                        .symbolEffect(.wiggle)
                 }
-                .opacity(buttonAppear ? 1 : 0)
-                .offset(y: buttonAppear ? 0 : 60)
-                .animation(.interpolatingSpring(stiffness: 180, damping: 16).delay(0.6), value: buttonAppear)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.black)
+                .cornerRadius(14)
+                .scaleEffect(isButtonPressed ? 1.05 : 1.0)
             }
+            .buttonStyle(.plain)
+            .padding(.horizontal, 48)
+            .padding(.bottom, 60)
         }
-        .onAppear {
-            logoAppear = true
-            buttonAppear = true
-        }
+        .background(Color.white)
+        .ignoresSafeArea()
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
