@@ -9,10 +9,28 @@ import SwiftUI
 
 struct header: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            // Invisible spacer to balance the trailing image width if needed
+            Color.clear
+                .frame(width: 50, height: 50)
+                .opacity(0)
+
+            Text("SociaLite")
+                .font(.title2)
+                .fontWeight(.bold)
+                .frame(maxWidth: .infinity, alignment: .center)
+
+            Image(systemName: "person.circle")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .frame(alignment: .trailing)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal)
     }
 }
 
 #Preview {
     header()
 }
+
