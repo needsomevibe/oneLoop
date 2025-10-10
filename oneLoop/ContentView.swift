@@ -11,7 +11,7 @@ struct ContentView: View {
             
             // MARK: - Logo with Animation
             HStack(spacing: 8) {
-                Image("logo")
+                Image("Logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 120, height: 120)
