@@ -11,6 +11,19 @@ struct HomeView: View {
     @State private var dailySelection: PillToggle.Selection = .left   // Daily / Random
     @State private var weeklySelection: PillToggle.Selection = .left  // Weekly / Monthly
 
+    private let dailyChallenges = [
+            ("Ask for the time or directions to someone you don’t know, even if you know it already", 10),
+            ("Compliment a stranger genuinely", 15),
+            ("Say hi to three people you don’t know", 20)
+        ]
+
+        private let weeklyChallenges = [
+            ("Talk to 10 strangers during this week", 50),
+            ("Join a social event or club", 70),
+            ("Start a conversation with a coworker/classmate", 40),
+            ("Invite someone new for coffee", 60)
+        ]
+    
     var body: some View {
         VStack(spacing: 0) {
             header()
@@ -29,12 +42,15 @@ struct HomeView: View {
                     )
                     .padding(.horizontal, 20)
 
-                    ChallengeCard(
+                    /*ChallengeCard(
                         text: "Ask for the time or directions to someone you don’t know, even if you know it already",
                         xp: 10,
                         showsMenu: false
                     )
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 20)*/
+                    // Stacked Daily Challenges
+                                        StackedChallengesView(challenges: dailyChallenges)
+                                            .padding(.top, 8)
 
                     // Weekly / Monthly
                     VStack(alignment: .leading, spacing: 12) {
@@ -44,11 +60,12 @@ struct HomeView: View {
                             selection: $weeklySelection
                         )
 
-                        ChallengeCard(
+                        /*ChallengeCard(
                             text: "Talk to 10 strangers during this week",
                             xp: 50,
                             showsMenu: true
-                        )
+                        )*/
+                        StackedChallengesView(challenges: weeklyChallenges)
                     }
                     .padding(.horizontal, 20)
 
