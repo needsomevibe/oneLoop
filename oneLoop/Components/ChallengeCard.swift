@@ -12,6 +12,11 @@ struct ChallengeCard: View {
     let xp: Int
     var showsMenu: Bool = false
     var onMenuTap: (() -> Void)? = nil
+    var onSwipeRight: (() -> Void)? = nil
+    var onSwipeLeft: (() -> Void)? = nil
+    
+    @State private var offset: CGSize = .zero
+    @GestureState private var isDragging = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -51,6 +56,34 @@ struct ChallengeCard: View {
                 .stroke(Color(.quaternaryLabel), lineWidth: 1)
         )
         .shadow(color: Color.black.opacity(0.04), radius: 8, x: 0, y: 4)
+        .rotationEffect(.degrees(Double(offset.width / 15))) //tilt effect
+        .offset(x: offset.width, y: offset.height)
+        .gesture(
+            DragGesture()
+                .updating($isDragging) { _, state, _ in
+                    state = true
+                }
+                .onChanged {value in offset = value.translation }
+                .onEnded { value in
+                    let horizontalAmount = value.translation.width
+
+                                        withAnimation(.spring()) {
+                                            if horizontalAmount > 150 {
+                                                // Swipe right → next challenge
+                                                offset = CGSize(width: 1000, height: 0)
+                                                onSwipeRight?()
+                                            } else if horizontalAmount < -150 {
+                                                // Swipe left → previous challenge
+                                                offset = CGSize(width: -1000, height: 0)
+                                                onSwipeLeft?()
+                                            } else {
+                                                // Not enough → snap back
+                                                offset = .zero
+                                            }
+                                        }
+                }
+        )
+        .animation(.interactiveSpring(), value: offset)
     }
 }
 
