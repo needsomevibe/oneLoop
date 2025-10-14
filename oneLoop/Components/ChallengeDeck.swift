@@ -21,23 +21,31 @@ struct ChallengeDeck: View {
         ZStack {
             if let next = nextChallenge {
                 // Back (next) card for deck effect
-                ChallengeCard(text: next.text, xp: next.xp, showsMenu: false)
-                    .scaleEffect(backScale)
-                    .opacity(backOpacity)
-                    .offset(x: backOffsetX)
+                ChallengeCard(
+                    text: next.text,
+                    showsMenu: false,
+                    appearance: appearance(for: nextIndex)
+                )
+                .scaleEffect(backScale)
+                .opacity(backOpacity)
+                .offset(x: backOffsetX)
             }
 
             if let current = currentChallenge {
-                ChallengeCard(text: current.text, xp: current.xp, showsMenu: true)
-                    .offset(x: dragOffset.width + exitOffsetX)
-                    .rotationEffect(.degrees(Double((dragOffset.width + exitOffsetX) / 20)))
-                    .shadow(color: Color.black.opacity(0.1),
-                            radius: min(abs(dragOffset.width) / 12, 10),
-                            x: 0, y: 6)
-                    .gesture(dragGesture)
-                    .animation(.interactiveSpring(), value: dragOffset)
-                    .animation(.spring(response: 0.35, dampingFraction: 0.85), value: exitOffsetX)
-                    .allowsHitTesting(!isAnimatingOut)
+                ChallengeCard(
+                    text: current.text,
+                    showsMenu: true,
+                    appearance: appearance(for: currentIndex)
+                )
+                .offset(x: dragOffset.width + exitOffsetX)
+                .rotationEffect(.degrees(Double((dragOffset.width + exitOffsetX) / 20)))
+                .shadow(color: Color.black.opacity(0.1),
+                        radius: min(abs(dragOffset.width) / 12, 10),
+                        x: 0, y: 6)
+                .gesture(dragGesture)
+                .animation(.interactiveSpring(), value: dragOffset)
+                .animation(.spring(response: 0.35, dampingFraction: 0.85), value: exitOffsetX)
+                .allowsHitTesting(!isAnimatingOut)
             }
         }
         .padding(.horizontal, 20)
@@ -50,10 +58,18 @@ struct ChallengeDeck: View {
         return challenges[currentIndex]
     }
 
+    private var nextIndex: Int {
+        guard challenges.count > 1 else { return currentIndex }
+        return (currentIndex + 1) % challenges.count
+    }
+
     private var nextChallenge: Challenge? {
         guard challenges.count > 1 else { return nil }
-        let nextIndex = (currentIndex + 1) % challenges.count
         return challenges[nextIndex]
+    }
+
+    private func appearance(for index: Int) -> ChallengeCard.Appearance {
+        index.isMultiple(of: 2) ? .light : .accent
     }
 
     private var backScale: CGFloat {
@@ -121,5 +137,3 @@ struct ChallengeDeck: View {
         }
     }
 }
-
-

@@ -15,7 +15,7 @@ struct header: View {
                 .frame(width: 50, height: 50)
                 .opacity(0)
 
-            Text("SociaLite")
+            Text("Bloom")
                 .font(.title2)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .center)

@@ -22,8 +22,9 @@ struct PillToggle: View {
             pill(title: rightTitle, isSelected: selection == .right) {
                 selection = .right
             }
-            Spacer()
+            //Spacer()
         }
+        
     }
 
     @ViewBuilder
