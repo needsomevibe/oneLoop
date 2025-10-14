@@ -19,10 +19,13 @@ struct ChallengeCard: View {
     var onMenuTap: (() -> Void)? = nil
     var onSwipeRight: (() -> Void)? = nil
     var onSwipeLeft: (() -> Void)? = nil
+    var onDone: (() -> Void)? = nil
     var appearance: Appearance = .light
     
     @State private var offset: CGSize = .zero
     @GestureState private var isDragging = false
+    @State private var isExpanded: Bool = false
+    @State private var doneButtonText: String = "Done!"
 
     private var backgroundColor: Color {
         switch appearance {
@@ -77,8 +80,23 @@ struct ChallengeCard: View {
                         .foregroundStyle(secondaryForegroundColor)
                         .font(.system(size: 22, weight: .heavy))
                 }
+
+                // Expandable area with the custom button
+                if isExpanded {
+                    // Separate the button slightly from the text
+                    VStack(spacing: 12) {
+                        ButtonComponent(text: $doneButtonText)
+                            .onChange(of: doneButtonText) { _, newValue in
+                                // Your ButtonComponent sets text = "Hello Learners!"
+                                // We can treat any tap as completion and call onDone.
+                                onDone?()
+                            }
+                    }
+                    .transition(.asymmetric(insertion: .opacity.combined(with: .move(edge: .bottom)),
+                                            removal: .opacity.combined(with: .move(edge: .top))))
+                }
             }
-            .frame(maxWidth: .infinity, minHeight: 180) // Taller card
+            .frame(maxWidth: .infinity, minHeight: isExpanded ? 240 : 180) // Taller when expanded
             .padding(16)
 
             // Menu button overlayed at top-right
@@ -107,6 +125,12 @@ struct ChallengeCard: View {
         .shadow(color: Color.black.opacity(appearance == .light ? 0.04 : 0.08), radius: 8, x: 0, y: 4)
         .rotationEffect(.degrees(Double(offset.width / 15))) // tilt effect
         .offset(x: offset.width, y: offset.height)
+        .contentShape(RoundedRectangle(cornerRadius: 14, style: .continuous)) // make entire card tappable
+        .onTapGesture {
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {
+                isExpanded.toggle()
+            }
+        }
         .gesture(
             DragGesture()
                 .updating($isDragging) { _, state, _ in
@@ -134,6 +158,7 @@ struct ChallengeCard: View {
                 }
         )
         .animation(.interactiveSpring(), value: offset)
+        .animation(.spring(response: 0.35, dampingFraction: 0.85), value: isExpanded)
     }
 }
 
@@ -154,4 +179,3 @@ struct ChallengeCard: View {
     .padding()
     .background(Color(.systemGroupedBackground))
 }
-
