@@ -18,12 +18,14 @@ struct header: View {
             Text("Bloom")
                 .font(.title2)
                 .fontWeight(.bold)
+                .foregroundColor(Color.black)
                 .frame(maxWidth: .infinity, alignment: .center)
 
             Image(systemName: "person.circle")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .frame(alignment: .trailing)
+                .foregroundColor(Color.black)
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal)
