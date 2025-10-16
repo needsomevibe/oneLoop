@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct CompleteChallengeCard: View {
-    let title: String   //We declare with let in order to use it as parameters
-    let subtitle: String
-    let objective: String
-    let step1: String
-    let step2: String
-    let step3: String
+    let challenge: ChallengeDetail
+
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 16)
@@ -28,18 +24,18 @@ struct CompleteChallengeCard: View {
                 .overlay(
                     HStack {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(title)
+                            Text(challenge.title)
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text(subtitle)
+                            Text(challenge.subtitle)
                                 .font(.subheadline)
                                 .foregroundColor(.black.opacity(0.7))
                             Text("Objective:")
                                 .font(.headline)
                                 .foregroundColor(.black.opacity(0.7))
                                 .padding(.top, 12)
-                            Text(objective)
+                            Text(challenge.objective)
                                 .font(.caption2)
                                 .foregroundColor(.black.opacity(0.7))
                             Text("Steps:")
@@ -47,16 +43,12 @@ struct CompleteChallengeCard: View {
                                 .foregroundColor(.black.opacity(0.7))
                                 .padding(.top, 12)
 
-                            // Steps text
-                            Text("1. \(step1)")
-                                .font(.caption2)
-                                .foregroundColor(.black.opacity(0.7))
-                            Text("2. \(step2)")
-                                .font(.caption2)
-                                .foregroundColor(.black.opacity(0.7))
-                            Text("3. \(step3)")
-                                .font(.caption2)
-                                .foregroundColor(.black.opacity(0.7))
+                            // Steps list
+                            ForEach(Array(challenge.steps.enumerated()), id: \.offset) { index, step in
+                                Text("\(index + 1). \(step)")
+                                    .font(.caption2)
+                                    .foregroundColor(.black.opacity(0.7))
+                            }
                         }
                         Spacer()
                     }
@@ -69,12 +61,11 @@ struct CompleteChallengeCard: View {
 
 #Preview {
     CompleteChallengeCard(
-        title: "Challenge 1",
-        subtitle: "Ask for someone to help you",
-        objective: "Try to findo someone sjsjsjsjs",
-        step1: "Find someone",
-        step2: "Call it",
-        step3: "Introduce Yourself"
+        challenge: ChallengeDetail(
+            title: "Challenge 1",
+            subtitle: "Ask for someone to help you",
+            objective: "Try to find someone who can help you with a simple task.",
+            steps: ["Find someone", "Call them", "Introduce yourself"]
+        )
     )
 }
-

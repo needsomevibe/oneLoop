@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ChallengeCardd: View {
-    let title: String   //We declare with let in order to use it as parameters
-    let subtitle: String
+    let challenge: ChallengeDetail
+    
     @State var isModalOpened: Bool = false
     
     var body: some View {
@@ -28,18 +28,17 @@ struct ChallengeCardd: View {
                 .overlay(
                     HStack {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(title)
+                            Text(challenge.title)
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
-                            Text(subtitle)
+                            Text(challenge.subtitle)
                                 .font(.subheadline)
                                 .foregroundColor(.black.opacity(0.7))
                         }
                         Spacer()
                         
                         Button(action: {
-                            //print("Start tapped")
                             isModalOpened.toggle()
                         }) {
                             Text("START")
@@ -53,7 +52,7 @@ struct ChallengeCardd: View {
                     }
                     .padding(.horizontal, 24)
                     .sheet(isPresented: $isModalOpened){
-                        IndChallengeView()
+                        IndChallengeView(challenge: challenge)
                     }
                 )
         }
@@ -65,12 +64,20 @@ struct ChallengeCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 16) {
             ChallengeCardd(
-                title: "Challenge 1",
-                subtitle: "Asking for Information"
+                challenge: ChallengeDetail(
+                    title: "Challenge 1",
+                    subtitle: "Asking for Information",
+                    objective: "Try to ask for information politely and clearly.",
+                    steps: ["Find someone", "Ask your question", "Thank them"]
+                )
             )
             ChallengeCardd(
-                title: "Challenge 2",
-                subtitle: "Making Requests"
+                challenge: ChallengeDetail(
+                    title: "Challenge 2",
+                    subtitle: "Making Requests",
+                    objective: "Learn to make simple requests with confidence.",
+                    steps: ["Identify your need", "Formulate your request", "Acknowledge the response"]
+                )
             )
         }
         .previewLayout(.sizeThatFits)

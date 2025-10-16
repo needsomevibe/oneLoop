@@ -23,20 +23,52 @@ struct ChallengesView: View {
             ScrollView {
                 VStack(spacing: 32) {
                     ChallengeCardd(
-                        title: "Challenge 1",
-                        subtitle: "Asking for Information"
+                        challenge: ChallengeDetail(
+                            title: "Challenge 1",
+                            subtitle: "Asking for Information",
+                            objective: "Learn to ask for information clearly and confidently.",
+                            steps: [
+                                "Use the `.request` modifier to make a request to the API",
+                                "Use the `.decode` modifier to decode the response",
+                                "Use the `.map` modifier to transform the decoded data"
+                            ]
+                        )
                     )
                     ChallengeCardd(
-                        title: "Challenge 2",
-                        subtitle: "Making Requests"
+                        challenge: ChallengeDetail(
+                            title: "Challenge 2",
+                            subtitle: "Making Requests",
+                            objective: "Practice making simple requests.",
+                            steps: [
+                                "Use the `.request` modifier to make a request to the API",
+                                "Use the `.decode` modifier to decode the response",
+                                "Use the `.map` modifier to transform the decoded data"
+                            ]
+                        )
                     )
                     ChallengeCardd(
-                        title: "Challenge 3",
-                        subtitle: "Making Requests"
+                        challenge: ChallengeDetail(
+                            title: "Challenge 3",
+                            subtitle: "Saying Hello to 5 people",
+                            objective: "Improve your ability to talk with people.",
+                            steps: [
+                                "Find a person",
+                                "Say hi!",
+                                "Repeat the other 2 steps"
+                            ]
+                        )
                     )
                     ChallengeCardd(
-                        title: "Challenge 4",
-                        subtitle: "Making Requests"
+                        challenge: ChallengeDetail(
+                            title: "Challenge 4",
+                            subtitle: "Making Requests",
+                            objective: "Try a more challenging social interaction.",
+                            steps: [
+                                "Abduzcan",
+                                "Paso 2",
+                                "Paso 3"
+                            ]
+                        )
                     )
                 }
                 .padding(.top, 8)
