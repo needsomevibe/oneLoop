@@ -10,6 +10,7 @@ import SwiftUI
 struct ChallengeCardd: View {
     let title: String   //We declare with let in order to use it as parameters
     let subtitle: String
+    @State var isModalOpened: Bool = false
     
     var body: some View {
         ZStack {
@@ -38,7 +39,8 @@ struct ChallengeCardd: View {
                         Spacer()
                         
                         Button(action: {
-                            print("Start tapped")
+                            //print("Start tapped")
+                            isModalOpened.toggle()
                         }) {
                             Text("START")
                                 .fontWeight(.semibold)
@@ -50,6 +52,9 @@ struct ChallengeCardd: View {
                         }
                     }
                     .padding(.horizontal, 24)
+                    .sheet(isPresented: $isModalOpened){
+                        IndChallengeView()
+                    }
                 )
         }
         .padding(.horizontal)
