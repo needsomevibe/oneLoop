@@ -63,6 +63,7 @@ struct CompleteChallengeCard: View {
                     .padding(.horizontal, 24)
                 )
         }
+        
     }
 }
 
