@@ -51,6 +51,16 @@ struct HomeView: View {
             } label: {
                 ButtonComponentStyle(title: "Level 4") // default 14
             }
+            
+            VStack{
+                Text("15/20")
+                    .font(.callout.bold())
+                    .foregroundColor(.black)
+                    .padding(.top, 10)
+                Text("Challenges Completed")
+                    .font(.caption2)
+            }
+            
 
             Spacer()
         }
