@@ -1,0 +1,113 @@
+//
+//  Calendar.swift
+//  oneLoop
+//
+//  Created by José Miguel Guerrero Jiménez on 17/10/25.
+//
+
+import SwiftUI
+
+struct CalendarView: View {
+    @State private var currentDate = Date()
+    private let calendar = Calendar.current
+    
+    private var daysInMonth: [Date] {
+        guard let monthInterval = calendar.dateInterval(of: .month, for: currentDate) else { return [] }
+        var dates: [Date] = []
+        var date = monthInterval.start
+        while date < monthInterval.end {
+            dates.append(date)
+            date = calendar.date(byAdding: .day, value: 1, to: date)!
+        }
+        return dates
+    }
+    
+    private var monthAndYear: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter.string(from: currentDate).capitalized
+    }
+    
+    private var daysOfWeek: [String] {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "es_ES") // Cambia a "en_US" si prefieres inglés
+        return formatter.shortWeekdaySymbols
+    }
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            // Encabezado del mes
+            HStack {
+                Button(action: { changeMonth(by: -1) }) {
+                    Image(systemName: "chevron.left")
+                }
+                Spacer()
+                Text(monthAndYear)
+                    .font(.title2)
+                    .bold()
+                Spacer()
+                Button(action: { changeMonth(by: 1) }) {
+                    Image(systemName: "chevron.right")
+                }
+            }
+            .padding(.horizontal)
+            
+            // Días de la semana
+            HStack {
+                ForEach(daysOfWeek, id: \.self) { day in
+                    Text(day.prefix(2).uppercased())
+                        .font(.subheadline)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.gray)
+                }
+            }
+            
+            // Días del mes
+            let firstWeekday = calendar.component(.weekday, from: daysInMonth.first ?? Date()) - 1
+            let emptyCells = Array(repeating: "", count: firstWeekday)
+            let totalDays = emptyCells.map { _ in Optional<Date>.none } + daysInMonth.map { Optional($0) }
+            
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                ForEach(totalDays, id: \.self) { date in
+                    if let date = date {
+                        DayView(date: date, currentDate: currentDate)
+                    } else {
+                        Text("")
+                            .frame(height: 40)
+                    }
+                }
+            }
+            .padding(.horizontal, 4)
+        }
+        .padding()
+        .animation(.easeInOut, value: currentDate)
+    }
+    
+    private func changeMonth(by value: Int) {
+        if let newDate = calendar.date(byAdding: .month, value: value, to: currentDate) {
+            currentDate = newDate
+        }
+    }
+}
+
+struct DayView: View {
+    let date: Date
+    let currentDate: Date
+    private let calendar = Calendar.current
+    
+    var body: some View {
+        let day = calendar.component(.day, from: date)
+        let isToday = calendar.isDateInToday(date)
+        
+        Text("\(day)")
+            .frame(width: 36, height: 36)
+            .background(isToday ? Color.blue.opacity(0.8) : Color.clear)
+            .clipShape(Circle())
+            .foregroundColor(isToday ? .white : .primary)
+    }
+}
+
+#Preview {
+    CalendarView()
+}
+
