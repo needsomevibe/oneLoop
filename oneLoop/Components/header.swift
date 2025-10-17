@@ -36,7 +36,7 @@ struct header: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal)
         .sheet(isPresented: $isModalOpened){
-            ProfileView()
+            NoProfileView()
         }
     }
 }
