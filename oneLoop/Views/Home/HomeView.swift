@@ -22,7 +22,7 @@ struct HomeView: View {
         Challenge(text: "Start a conversation with a coworker/classmate", xp: 40),
         Challenge(text: "Invite someone new for coffee", xp: 60)
     ]
-
+    @EnvironmentObject var progressVM: ChallengeProgressViewModel
     var body: some View {
         VStack (spacing: 42){
             header()
@@ -52,8 +52,16 @@ struct HomeView: View {
                 ButtonComponentStyle(title: "Level 4") // default 14
             }
             
-            VStack{
+            /*VStack{
                 Text("15/20")
+                    .font(.callout.bold())
+                    .foregroundColor(.black)
+                    .padding(.top, 10)
+                Text("Challenges Completed")
+                    .font(.caption2)
+            }*/
+            VStack {
+                Text("\(progressVM.completedChallenges)/\(progressVM.totalChallenges)")
                     .font(.callout.bold())
                     .foregroundColor(.black)
                     .padding(.top, 10)
@@ -94,8 +102,16 @@ private struct ButtonComponentStyle: View {
     }
 }
 
-#Preview {
+/*#Preview {
     NavigationStack {
         HomeView()
     }
 }
+*/
+#Preview {
+    NavigationStack {
+        HomeView()
+            .environmentObject(ChallengeProgressViewModel()) // 👈 agregar esto
+    }
+}
+

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IndChallengeView: View {
     let challenge: ChallengeDetail
+    @EnvironmentObject var progressVM: ChallengeProgressViewModel
+
     @State private var showPopup = false
 
     // Mensaje dinámico según el challenge
@@ -40,7 +42,7 @@ struct IndChallengeView: View {
                         }
                     }
                 )
-                .transition(.scale.combined(with: .opacity))
+                .transition(AnyTransition.scale.combined(with: .opacity))
                 .zIndex(1)
             }
             VStack {
@@ -60,6 +62,22 @@ struct IndChallengeView: View {
                 .padding(.horizontal)
 
                 CompleteChallengeCard(challenge: challenge)
+                    .padding(.bottom)
+                HStack{
+                    ActionButtonCard(title: "Not Now", icon: "arrowshape.turn.up.left") {
+                        // optional action for "Not Now"
+                    }
+                    ActionButtonCard(title: "Got it!", icon: "hands.clap.fill") {
+                        withAnimation {
+                            //progressVM.completedChallenges += 1
+                            if progressVM.completedChallenges < progressVM.totalChallenges {
+                                progressVM.completedChallenges += 1
+                            }
+
+                            showPopup = true
+                        }
+                    }
+                }
             }
         }
     }
@@ -75,3 +93,4 @@ struct IndChallengeView: View {
         )
     )
 }
+
