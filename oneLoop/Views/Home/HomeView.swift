@@ -9,19 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-    private let dailyChallenges: [Challenge] = [
-        Challenge(text: "Ask for the time or directions to someone you don’t know, even if you know it already", xp: 10),
-        Challenge(text: "Compliment a stranger genuinely", xp: 15),
-        Challenge(text: "Say hi to three people you don’t know", xp: 20),
-        Challenge(text: "Sing it out loud", xp: 20)
-    ]
-
-    private let weeklyChallenges: [Challenge] = [
-        Challenge(text: "Talk to 10 strangers during this week", xp: 50),
-        Challenge(text: "Join a social event or club", xp: 70),
-        Challenge(text: "Start a conversation with a coworker/classmate", xp: 40),
-        Challenge(text: "Invite someone new for coffee", xp: 60)
-    ]
+    
     @EnvironmentObject var progressVM: ChallengeProgressViewModel
     var body: some View {
         VStack (spacing: 42){
@@ -38,28 +26,26 @@ struct HomeView: View {
                 ChallengesView(title: "Level 2")
             } label: {
                 ButtonComponentStyle(title: "Level 2", cornerRadius: 16)
+                    .opacity(progressVM.completedChallenges < 5 ? 0.5 : 1)
+                    //.disabled(progressVM.completedChallenges > 5)
+
             }
 
             NavigationLink {
                 ChallengesView(title: "Level 3")
             } label: {
                 ButtonComponentStyle(title: "Level 3", cornerRadius: 20)
+                    .opacity(progressVM.completedChallenges < 10 ? 0.5 : 1)
             }
 
             NavigationLink {
                 ChallengesView(title: "Level 4")
             } label: {
                 ButtonComponentStyle(title: "Level 4") // default 14
+                    .opacity(progressVM.completedChallenges < 15 ? 0.5 : 1)
             }
             
-            /*VStack{
-                Text("15/20")
-                    .font(.callout.bold())
-                    .foregroundColor(.black)
-                    .padding(.top, 10)
-                Text("Challenges Completed")
-                    .font(.caption2)
-            }*/
+            
             VStack {
                 Text("\(progressVM.completedChallenges)/\(progressVM.totalChallenges)")
                     .font(.callout.bold())
@@ -76,7 +62,7 @@ struct HomeView: View {
     }
 }
 
-private struct ButtonComponentStyle: View {
+/*private struct ButtonComponentStyle: View {
     let title: String
     let cornerRadius: CGFloat
     let tint: Color
@@ -100,7 +86,7 @@ private struct ButtonComponentStyle: View {
             .padding(.horizontal, 24)
             .padding(.vertical, 8)
     }
-}
+}*/
 
 /*#Preview {
     NavigationStack {
