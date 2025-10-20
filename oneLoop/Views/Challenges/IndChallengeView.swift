@@ -51,13 +51,13 @@ struct IndChallengeView: View {
                         .font(.headline)
                         .foregroundColor(.black)
                     Spacer()
-                    Button("Done") {
+                    /*Button("Done") {
                         withAnimation {
                             showPopup = true
                         }
                     }
                     .font(.headline)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.blue)*/
                 }
                 .padding(.horizontal)
 
