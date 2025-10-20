@@ -66,9 +66,10 @@ struct IndChallengeView: View {
                     }
                     ActionButtonCard(title: "Got it!", icon: "hands.clap.fill") {
                         withAnimation {
-                            if progressVM.completedChallenges < progressVM.totalChallenges {
+                            /*if progressVM.completedChallenges < progressVM.totalChallenges {
                                 progressVM.completedChallenges += 1
-                            }
+                            }*/
+                            progressVM.addCompletedChallenge()
                             showPopup = true
                         }
                     }

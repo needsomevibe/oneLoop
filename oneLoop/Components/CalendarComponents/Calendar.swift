@@ -5,9 +5,11 @@
 //  Created by José Miguel Guerrero Jiménez on 17/10/25.
 //
 
+
 import SwiftUI
 
 struct CalendarView: View {
+    @EnvironmentObject var progressVM: ChallengeProgressViewModel
     @State private var currentDate = Date()
     private let calendar = Calendar.current
     
@@ -30,7 +32,7 @@ struct CalendarView: View {
     
     private var daysOfWeek: [String] {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "es_ES") // Cambia a "en_US" si prefieres inglés
+        formatter.locale = Locale(identifier: "en_US")
         return formatter.shortWeekdaySymbols
     }
     
@@ -70,7 +72,11 @@ struct CalendarView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                 ForEach(totalDays, id: \.self) { date in
                     if let date = date {
-                        DayView(date: date, currentDate: currentDate)
+                        DayView(
+                            date: date,
+                            currentDate: currentDate,
+                            hasChallenge: progressVM.completedDates.contains { calendar.isDate($0, inSameDayAs: date) }
+                        )
                     } else {
                         Text("")
                             .frame(height: 40)
@@ -90,24 +96,15 @@ struct CalendarView: View {
     }
 }
 
-struct DayView: View {
-    let date: Date
-    let currentDate: Date
-    private let calendar = Calendar.current
-    
-    var body: some View {
-        let day = calendar.component(.day, from: date)
-        let isToday = calendar.isDateInToday(date)
-        
-        Text("\(day)")
-            .frame(width: 36, height: 36)
-            .background(isToday ? Color.blue.opacity(0.8) : Color.clear)
-            .clipShape(Circle())
-            .foregroundColor(isToday ? .white : .primary)
-    }
-}
-
 #Preview {
-    CalendarView()
+    let vm = ChallengeProgressViewModel()
+    vm.completedDates = [
+        Date(),
+        Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
+        Calendar.current.date(byAdding: .day, value: -3, to: Date())!
+    ]
+    
+    return CalendarView()
+        .environmentObject(vm)
 }
 
