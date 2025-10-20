@@ -5,71 +5,27 @@
 //  Created by José Miguel Guerrero Jiménez on 15/10/25.
 //
 
+
 import SwiftUI
 
 struct ChallengesView: View {
-    let title: String
+    let level: Level // Recibe el nivel completo
 
     var body: some View {
         VStack(spacing: 16) {
-            // App header (uses the existing `header` view)
+            // App header
             header()
                 .padding(.top, 2)
 
             // Screen title
-            ScreenTitle(title: title)
+            ScreenTitle(title: level.title)
 
             // Content
             ScrollView {
                 VStack(spacing: 32) {
-                    ChallengeCardd(
-                        challenge: ChallengeDetail(
-                            title: "Challenge 1",
-                            subtitle: "Asking for Information",
-                            objective: "Learn to ask for information clearly and confidently.",
-                            steps: [
-                                "Use the `.request` modifier to make a request to the API",
-                                "Use the `.decode` modifier to decode the response",
-                                "Use the `.map` modifier to transform the decoded data"
-                            ]
-                        )
-                    )
-                    ChallengeCardd(
-                        challenge: ChallengeDetail(
-                            title: "Challenge 2",
-                            subtitle: "Making Requests",
-                            objective: "Practice making simple requests.",
-                            steps: [
-                                "Use the `.request` modifier to make a request to the API",
-                                "Use the `.decode` modifier to decode the response",
-                                "Use the `.map` modifier to transform the decoded data"
-                            ]
-                        )
-                    )
-                    ChallengeCardd(
-                        challenge: ChallengeDetail(
-                            title: "Challenge 3",
-                            subtitle: "Saying Hello to 5 people",
-                            objective: "Improve your ability to talk with people.",
-                            steps: [
-                                "Find a person",
-                                "Say hi!",
-                                "Repeat the other 2 steps"
-                            ]
-                        )
-                    )
-                    ChallengeCardd(
-                        challenge: ChallengeDetail(
-                            title: "Challenge 4",
-                            subtitle: "Making Requests",
-                            objective: "Try a more challenging social interaction.",
-                            steps: [
-                                "Abduzcan",
-                                "Paso 2",
-                                "Paso 3"
-                            ]
-                        )
-                    )
+                    ForEach(level.challenges, id: \.title) { challenge in
+                        ChallengeCardd(challenge: challenge)
+                    }
                 }
                 .padding(.top, 8)
             }
@@ -79,5 +35,16 @@ struct ChallengesView: View {
 }
 
 #Preview {
-    ChallengesView(title: "Level 1")
+    ChallengesView(level: Level(
+        title: "Level 1",
+        challenges: [
+            ChallengeDetail(
+                title: "Challenge 1",
+                subtitle: "Preview Example",
+                objective: "Just a sample challenge.",
+                steps: ["Step 1", "Step 2"]
+            )
+        ]
+    ))
 }
+

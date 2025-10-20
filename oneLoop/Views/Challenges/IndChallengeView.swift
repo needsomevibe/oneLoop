@@ -5,15 +5,16 @@
 //  Created by José Miguel Guerrero Jiménez on 16/10/25.
 //
 
+
 import SwiftUI
 
 struct IndChallengeView: View {
     let challenge: ChallengeDetail
     @EnvironmentObject var progressVM: ChallengeProgressViewModel
+    @Environment(\.dismiss) var dismiss // 👈 Agregado
 
     @State private var showPopup = false
 
-    // Mensaje dinámico según el challenge
     private var motivationalMessage: String {
         switch challenge.title.lowercased() {
         case "challenge 1":
@@ -32,6 +33,7 @@ struct IndChallengeView: View {
     var body: some View {
         ZStack {
             Color.backBlue.ignoresSafeArea()
+
             if showPopup {
                 MotivationalPopupView(
                     title: "Great job on \(challenge.title)!",
@@ -45,35 +47,28 @@ struct IndChallengeView: View {
                 .transition(AnyTransition.scale.combined(with: .opacity))
                 .zIndex(1)
             }
+
             VStack {
                 HStack {
                     Text(challenge.title)
                         .font(.headline)
                         .foregroundColor(.black)
                     Spacer()
-                    /*Button("Done") {
-                        withAnimation {
-                            showPopup = true
-                        }
-                    }
-                    .font(.headline)
-                    .foregroundColor(.blue)*/
                 }
                 .padding(.horizontal)
 
                 CompleteChallengeCard(challenge: challenge)
                     .padding(.bottom)
-                HStack{
+
+                HStack {
                     ActionButtonCard(title: "Not Now", icon: "arrowshape.turn.up.left") {
-                        // optional action for "Not Now"
+                        dismiss() // 👈 Ahora ya cierra la vista
                     }
                     ActionButtonCard(title: "Got it!", icon: "hands.clap.fill") {
                         withAnimation {
-                            //progressVM.completedChallenges += 1
                             if progressVM.completedChallenges < progressVM.totalChallenges {
                                 progressVM.completedChallenges += 1
                             }
-
                             showPopup = true
                         }
                     }

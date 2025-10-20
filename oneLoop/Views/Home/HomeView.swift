@@ -17,13 +17,13 @@ struct HomeView: View {
             Spacer()
 
             NavigationLink {
-                ChallengesView(title: "Level 1")
+                ChallengesView(level: levels[0])
             } label: {
                 ButtonComponentStyle(title: "Level 1", cornerRadius: 12)
             }
 
             NavigationLink {
-                ChallengesView(title: "Level 2")
+                ChallengesView(level: levels[1])
             } label: {
                 ButtonComponentStyle(title: "Level 2", cornerRadius: 16)
                     .opacity(progressVM.completedChallenges < 5 ? 0.5 : 1)
@@ -33,7 +33,7 @@ struct HomeView: View {
             .disabled(progressVM.completedChallenges < 5)
 
             NavigationLink {
-                ChallengesView(title: "Level 3")
+                ChallengesView(level: levels[2])
             } label: {
                 ButtonComponentStyle(title: "Level 3", cornerRadius: 20)
                     .opacity(progressVM.completedChallenges < 10 ? 0.5 : 1)
@@ -41,7 +41,7 @@ struct HomeView: View {
             .disabled(progressVM.completedChallenges < 10)
 
             NavigationLink {
-                ChallengesView(title: "Level 4")
+                ChallengesView(level: levels[3])
             } label: {
                 ButtonComponentStyle(title: "Level 4") // default 14
                     .opacity(progressVM.completedChallenges < 15 ? 0.5 : 1)

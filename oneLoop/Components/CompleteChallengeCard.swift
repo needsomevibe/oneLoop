@@ -49,6 +49,17 @@ struct CompleteChallengeCard: View {
                                     .font(.caption2)
                                     .foregroundColor(.black.opacity(0.7))
                             }
+                            /*HStack{
+                                Text("You have completed this challenge: ")
+                                    .font(.caption2)
+                                    //.padding(.top, 15)
+                                Text("2 times")
+                                    .font(.caption2)
+                                    .bold()
+                                    
+                            }
+                            .padding(.top, 15)*/
+                            
                         }
                         Spacer()
                     }
