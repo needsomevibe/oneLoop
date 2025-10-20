@@ -10,6 +10,7 @@ import SwiftUI
 struct textFieldOL: View {
     let text: String
     let textfield: String
+    @Binding var value: String
     var body: some View {
         VStack{
             Text(text + ":")
@@ -18,7 +19,7 @@ struct textFieldOL: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 
-            TextField(textfield + "...", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField(textfield + "...", text: $value)
                 .padding(.horizontal)
                 
         }
@@ -26,6 +27,4 @@ struct textFieldOL: View {
     }
 }
 
-#Preview {
-    textFieldOL(text: "Name", textfield: "Write your name")
-}
+

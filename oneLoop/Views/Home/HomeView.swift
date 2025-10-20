@@ -27,9 +27,10 @@ struct HomeView: View {
             } label: {
                 ButtonComponentStyle(title: "Level 2", cornerRadius: 16)
                     .opacity(progressVM.completedChallenges < 5 ? 0.5 : 1)
-                    //.disabled(progressVM.completedChallenges > 5)
+                   
 
             }
+            .disabled(progressVM.completedChallenges < 5)
 
             NavigationLink {
                 ChallengesView(title: "Level 3")
@@ -37,6 +38,7 @@ struct HomeView: View {
                 ButtonComponentStyle(title: "Level 3", cornerRadius: 20)
                     .opacity(progressVM.completedChallenges < 10 ? 0.5 : 1)
             }
+            .disabled(progressVM.completedChallenges < 10)
 
             NavigationLink {
                 ChallengesView(title: "Level 4")
@@ -44,6 +46,7 @@ struct HomeView: View {
                 ButtonComponentStyle(title: "Level 4") // default 14
                     .opacity(progressVM.completedChallenges < 15 ? 0.5 : 1)
             }
+            .disabled(progressVM.completedChallenges < 15)
             
             
             VStack {

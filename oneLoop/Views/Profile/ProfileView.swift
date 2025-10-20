@@ -8,36 +8,47 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @AppStorage("profileImage") private var profileImageData: Data?
+    @AppStorage("userName") private var userName: String = ""
+    @AppStorage("userSurname") private var userSurname: String = ""
+    
+    @State private var showEdit = false
+
     var body: some View {
-        ZStack {
-            Color.backBlue
-                .ignoresSafeArea() // 🔹 Hace que el color cubra toda la pantalla
+        VStack() {
             
-            VStack {
-                Image("Mcqueen")
+            if let data = profileImageData, let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 280, height: 280)
                     .clipShape(Circle())
-                    .shadow(radius: 30)
-               
-                Text("Lightning Mcqueen")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundStyle(Color.blue)
-                
-                Text("Your Activity")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(Color.white)
-                
-                CalendarView()
+                    .shadow(radius: 20)
+                    
             }
+            
+            Text("\(userName) \(userSurname)")
+                .font(.title)
+                .bold()
+                .foregroundColor(.white)
+            
+            Text("Your Activity")
+                .font(.title2)
+                .foregroundColor(.gray)
+            
+            CalendarView()
+            
+            Button("Edit Info") {
+                showEdit = true
+            }
+            .buttonStyle(.borderedProminent)
+            .padding(.top)
         }
+        .sheet(isPresented: $showEdit) {
+            NoProfileView() // Reutilizamos la misma vista para editar datos
+        }
+        .padding()
+        .background(Color.backBlue.ignoresSafeArea())
     }
-}
-
-#Preview {
-    ProfileView()
 }
 
