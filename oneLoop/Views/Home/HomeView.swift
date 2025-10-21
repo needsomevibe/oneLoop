@@ -30,7 +30,7 @@ struct HomeView: View {
                    
 
             }
-            .disabled(progressVM.completedChallenges < 5)
+            .disabled(progressVM.completedChallenges < 3)
 
             NavigationLink {
                 ChallengesView(level: levels[2])
@@ -38,7 +38,7 @@ struct HomeView: View {
                 ButtonComponentStyle(title: "Level 3", cornerRadius: 20)
                     .opacity(progressVM.completedChallenges < 10 ? 0.5 : 1)
             }
-            .disabled(progressVM.completedChallenges < 10)
+            .disabled(progressVM.completedChallenges < 6)
 
             NavigationLink {
                 ChallengesView(level: levels[3])
@@ -46,11 +46,18 @@ struct HomeView: View {
                 ButtonComponentStyle(title: "Level 4") // default 14
                     .opacity(progressVM.completedChallenges < 15 ? 0.5 : 1)
             }
-            .disabled(progressVM.completedChallenges < 15)
+            .disabled(progressVM.completedChallenges < 9)
+            NavigationLink {
+                ChallengesView(level: levels[4])
+            } label: {
+                ButtonComponentStyle(title: "Level 5") // default 14
+                    .opacity(progressVM.completedChallenges < 15 ? 0.5 : 1)
+            }
+            .disabled(progressVM.completedChallenges < 12)
             
             
             VStack {
-                Text("\(progressVM.completedChallenges)/\(progressVM.totalChallenges)")
+                Text("\(progressVM.completedChallenges)")
                     .font(.callout.bold())
                     .foregroundColor(.black)
                     .padding(.top, 10)

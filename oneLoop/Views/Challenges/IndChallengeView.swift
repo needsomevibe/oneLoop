@@ -18,13 +18,13 @@ struct IndChallengeView: View {
     private var motivationalMessage: String {
         switch challenge.title.lowercased() {
         case "challenge 1":
-            return "¡Primer paso logrado! Cada conversación te hace más fuerte."
+            return "You took a step forward today — every small action counts."
         case "challenge 2":
-            return "Excelente avance. Estás construyendo confianza día a día."
+            return "You showed courage by facing a challenge — that builds confidence. Keep going!"
         case "challenge 3":
-            return "¡Gran trabajo! Tu valentía está dando frutos."
+            return "You practiced persistence and focus — that strengthens your skills."
         case "challenge 4":
-            return "Impresionante constancia. Sigue así, estás creciendo mucho."
+            return "You reflected on your experience — self-awareness is powerful. Keep shining!"
         default:
             return "You did it — you reached out and spoke up! Even tiny steps are huge wins when facing anxiety."
         }
@@ -74,6 +74,7 @@ struct IndChallengeView: View {
                         }
                     }
                 }
+                
             }
         }
     }

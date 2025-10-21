@@ -19,7 +19,7 @@ class ChallengeProgressViewModel: ObservableObject {
            }
        }
     
-    let totalChallenges: Int = 20  // o cámbialo si tienes otro total
+    let totalChallenges: Int = 16  // o cámbialo si tienes otro total
     
     init() {
            loadCompletedDates()
