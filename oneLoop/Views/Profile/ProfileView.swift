@@ -34,7 +34,7 @@ struct ProfileView: View {
             
             Text("Your Activity")
                 .font(.title2)
-                .foregroundColor(.gray)
+                .foregroundColor(.blueDemon)
             
             CalendarView()
             
@@ -42,7 +42,9 @@ struct ProfileView: View {
                 showEdit = true
             }
             .buttonStyle(.borderedProminent)
+            .tint(.blueDemon)
             .padding(.top)
+            
         }
         .sheet(isPresented: $showEdit) {
             NoProfileView() // Reutilizamos la misma vista para editar datos

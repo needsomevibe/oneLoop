@@ -13,7 +13,7 @@ struct CompleteChallengeCard: View {
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.blue)
+                .fill(Color.blueDemon)
                 .frame(width: 350, height: 480)
                 .offset(x: 7,y: 8)
             // Foreground white card

@@ -22,8 +22,8 @@ struct DayView: View {
             Text("\(day)")
                 .frame(width: 36, height: 36)
                 .background(
-                    isToday ? Color.blue.opacity(0.8) :
-                        (hasChallenge ? Color.green.opacity(0.3) : Color.clear)
+                    isToday ? Color.blueDemon.opacity(0.8) :
+                        (hasChallenge ? Color.blueDemon.opacity(0.3) : Color.clear)
                 )
                 .clipShape(Circle())
                 .foregroundColor(isToday ? .white : .primary)
@@ -31,7 +31,7 @@ struct DayView: View {
             if hasChallenge {
                 Circle()
                     .frame(width: 6, height: 6)
-                    .foregroundColor(.green)
+                    .foregroundColor(.blueDemon)
             }
         }
     }

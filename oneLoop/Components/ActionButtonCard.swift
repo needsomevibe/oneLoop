@@ -29,7 +29,7 @@ struct ActionButtonCard: View {
             .foregroundColor(.white)
             .padding(.vertical, 14)
             .padding(.horizontal, 30)
-            .background(Color.blue)
+            .background(Color.blueDemon)
             .cornerRadius(14)
         }
     }

@@ -16,7 +16,7 @@ struct ChallengeCardd: View {
         ZStack {
             // Background shadow card (the one slightly behind)
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.blue)
+                .fill(Color.blueDemon)
                 .frame(height: 120)
                 .offset(y: 6)
             
@@ -46,7 +46,7 @@ struct ChallengeCardd: View {
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
-                                .background(Color.blue)
+                                .background(Color.blueDemon)
                                 .clipShape(Capsule())
                         }
                     }

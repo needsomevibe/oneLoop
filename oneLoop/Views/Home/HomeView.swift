@@ -59,7 +59,7 @@ struct HomeView: View {
             VStack {
                 Text("\(progressVM.completedChallenges)")
                     .font(.callout.bold())
-                    .foregroundColor(.black)
+                    .foregroundColor(.blueDemon)
                     .padding(.top, 10)
                 Text("Challenges Completed")
                     .font(.caption2)

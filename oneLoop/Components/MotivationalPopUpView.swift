@@ -30,13 +30,13 @@ struct MotivationalPopupView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.white)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.blueDemon)
                     .cornerRadius(10)
             }
             .padding(.top, 8)
         }
         .padding(24)
-        .background(Color.blue)
+        .background(Color.blueDemon)
         .cornerRadius(12)
         .shadow(radius: 10)
         .padding(.horizontal, 40)

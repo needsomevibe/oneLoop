@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		A3AEBE4C2E97BB00003485A9 /* oneLoop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneLoop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3AEBE4C2E97BB00003485A9 /* StepOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StepOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		A3AEBE4D2E97BB00003485A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A3AEBE4C2E97BB00003485A9 /* oneLoop.app */,
+				A3AEBE4C2E97BB00003485A9 /* StepOut.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A3AEBE4B2E97BB00003485A9 /* oneLoop */ = {
+		A3AEBE4B2E97BB00003485A9 /* StepOut */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "oneLoop" */;
+			buildConfigurationList = A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "StepOut" */;
 			buildPhases = (
 				A3AEBE482E97BB00003485A9 /* Sources */,
 				A3AEBE492E97BB00003485A9 /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				A3AEBE4E2E97BB00003485A9 /* oneLoop */,
 			);
-			name = oneLoop;
+			name = StepOut;
 			packageProductDependencies = (
 			);
 			productName = oneLoop;
-			productReference = A3AEBE4C2E97BB00003485A9 /* oneLoop.app */;
+			productReference = A3AEBE4C2E97BB00003485A9 /* StepOut.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A3AEBE472E97BB00003485A9 /* Build configuration list for PBXProject "oneLoop" */;
+			buildConfigurationList = A3AEBE472E97BB00003485A9 /* Build configuration list for PBXProject "StepOut" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A3AEBE4B2E97BB00003485A9 /* oneLoop */,
+				A3AEBE4B2E97BB00003485A9 /* StepOut */,
 			);
 		};
 /* End PBXProject section */
@@ -334,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A3AEBE472E97BB00003485A9 /* Build configuration list for PBXProject "oneLoop" */ = {
+		A3AEBE472E97BB00003485A9 /* Build configuration list for PBXProject "StepOut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3AEBE552E97BB00003485A9 /* Debug */,
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "oneLoop" */ = {
+		A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "StepOut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3AEBE582E97BB00003485A9 /* Debug */,

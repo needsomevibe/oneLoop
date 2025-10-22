@@ -12,7 +12,7 @@ struct ButtonComponentStyle: View {
     let cornerRadius: CGFloat
     let tint: Color
 
-    init(title: String, cornerRadius: CGFloat = 14, tint: Color = .blue) {
+    init(title: String, cornerRadius: CGFloat = 14, tint: Color = .blueDemon) {
         self.title = title
         self.cornerRadius = cornerRadius
         self.tint = tint

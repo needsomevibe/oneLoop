@@ -23,7 +23,7 @@ struct ButtonComponent: View {
     init(
         title: String,
         cornerRadius: CGFloat = 14,
-        tint: Color = .blue,
+        tint: Color = .blueDemon,
         action: (() -> Void)? = nil
     ) {
         self.title = title
@@ -44,6 +44,7 @@ struct ButtonComponent: View {
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                         .fill(tint)
                         .frame(width: 350, height: 86)
+                        
                 )
         }
         .buttonStyle(.plain)
