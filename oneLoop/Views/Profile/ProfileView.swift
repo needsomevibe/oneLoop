@@ -16,7 +16,7 @@ struct ProfileView: View {
 
     var body: some View {
         VStack() {
-            
+            Spacer()
             if let data = profileImageData, let uiImage = UIImage(data: data) {
                 Image(uiImage: uiImage)
                     .resizable()
@@ -30,7 +30,7 @@ struct ProfileView: View {
             Text("\(userName) \(userSurname)")
                 .font(.title)
                 .bold()
-                .foregroundColor(.white)
+                .foregroundColor(.blueaccent)
             
             Text("Your Activity")
                 .font(.title2)

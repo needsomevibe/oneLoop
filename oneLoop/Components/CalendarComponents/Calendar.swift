@@ -47,6 +47,7 @@ struct CalendarView: View {
                 Text(monthAndYear)
                     .font(.title2)
                     .bold()
+                    .foregroundStyle(Color.blueDemon)
                 Spacer()
                 Button(action: { changeMonth(by: 1) }) {
                     Image(systemName: "chevron.right")
@@ -60,7 +61,7 @@ struct CalendarView: View {
                     Text(day.prefix(2).uppercased())
                         .font(.subheadline)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.blueDemon)
                 }
             }
             

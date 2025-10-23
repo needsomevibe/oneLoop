@@ -26,7 +26,7 @@ struct DayView: View {
                         (hasChallenge ? Color.blueDemon.opacity(0.3) : Color.clear)
                 )
                 .clipShape(Circle())
-                .foregroundColor(isToday ? .white : .primary)
+                .foregroundColor(isToday ? .blueaccent : .blueaccent)
             
             if hasChallenge {
                 Circle()

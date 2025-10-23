@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
         VStack (spacing: 42){
             header()
-            Spacer()
+            //Spacer()
 
             NavigationLink {
                 ChallengesView(level: levels[0])
@@ -63,6 +63,7 @@ struct HomeView: View {
                     .padding(.top, 10)
                 Text("Challenges Completed")
                     .font(.caption2)
+                    .foregroundColor(Color.blueaccent)
             }
             
 

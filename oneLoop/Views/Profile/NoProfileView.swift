@@ -17,19 +17,29 @@ struct NoProfileView: View {
     @Environment(\.dismiss) var dismiss // Para cerrar el sheet después de crear perfil
 
     var body: some View {
-        VStack(spacing: 20) {
-            ImagePickerCircleView(imageData: $profileImageData)
-            
-            textFieldOL(text: "Name", textfield: "Write your name", value: $userName)
-            textFieldOL(text: "Surname", textfield: "Write your surname", value: $userSurname)
-            
-            Button("Confirm") {
-                dismiss() // Cierra el sheet automáticamente
+        ZStack{
+            Color.backBlue // 👈 Aquí va tu color de fondo personalizado
+                            .ignoresSafeArea() // Para que cubra toda la pantalla
+            VStack(spacing: 20) {
+                ImagePickerCircleView(imageData: $profileImageData)
+                
+                textFieldOL(text: "Name", textfield: "Write your name", value: $userName)
+                    .foregroundStyle(Color.blueaccent)
+                textFieldOL(text: "Surname", textfield: "Write your surname", value: $userSurname)
+                    .foregroundStyle(Color.blueaccent)
+
+                
+                Button("Confirm") {
+                    dismiss() // Cierra el sheet automáticamente
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(userName.isEmpty || userSurname.isEmpty || profileImageData == nil)
+                .tint(Color.blueDemon)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(userName.isEmpty || userSurname.isEmpty || profileImageData == nil)
+            .padding()
         }
-        .padding()
+        
+        
     }
 }
 
