@@ -14,7 +14,7 @@ struct header: View {
     var body: some View {
         HStack {
             Color.clear.frame(width: 50, height: 50) // Spacer invisible
-            Text("StepOut")
+            Text("SayHi!")
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.blueDemon)
