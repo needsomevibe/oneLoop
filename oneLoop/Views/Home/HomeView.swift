@@ -14,6 +14,7 @@ struct HomeView: View {
     var body: some View {
         VStack (spacing: 42){
             header()
+                
             //Spacer()
 
             NavigationLink {

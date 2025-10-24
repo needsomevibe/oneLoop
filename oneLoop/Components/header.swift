@@ -13,17 +13,17 @@ struct header: View {
     
     var body: some View {
         HStack {
-            Color.clear.frame(width: 50, height: 50) // Spacer invisible
-            Text("SayHi!")
-                .font(.title2)
+            Text("Levels")
+                .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.blueDemon)
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
             
             Button(action: { isModalOpened.toggle() }) {
                 Image(systemName: "person.circle")
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 30, height: 30)
                     .foregroundColor(.blueDemon)
             }
         }

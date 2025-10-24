@@ -14,7 +14,7 @@ struct ScreenTitle: View {
         Text(title)
             .font(.largeTitle)
             .fontWeight(.bold)
-            .foregroundColor(Color.black)
+            .foregroundColor(Color.blueDemon)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)    }
 }

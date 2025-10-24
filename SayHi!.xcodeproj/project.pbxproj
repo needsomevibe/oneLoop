@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		A3AEBE4C2E97BB00003485A9 /* SayHi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SayHi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3AEBE4C2E97BB00003485A9 /* SayHi!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SayHi!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		A3AEBE4D2E97BB00003485A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A3AEBE4C2E97BB00003485A9 /* SayHi.app */,
+				A3AEBE4C2E97BB00003485A9 /* SayHi!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A3AEBE4B2E97BB00003485A9 /* SayHi */ = {
+		A3AEBE4B2E97BB00003485A9 /* SayHi! */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "SayHi" */;
+			buildConfigurationList = A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "SayHi!" */;
 			buildPhases = (
 				A3AEBE482E97BB00003485A9 /* Sources */,
 				A3AEBE492E97BB00003485A9 /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				A3AEBE4E2E97BB00003485A9 /* oneLoop */,
 			);
-			name = SayHi;
+			name = "SayHi!";
 			packageProductDependencies = (
 			);
 			productName = oneLoop;
-			productReference = A3AEBE4C2E97BB00003485A9 /* SayHi.app */;
+			productReference = A3AEBE4C2E97BB00003485A9 /* SayHi!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A3AEBE4B2E97BB00003485A9 /* SayHi */,
+				A3AEBE4B2E97BB00003485A9 /* SayHi! */,
 			);
 		};
 /* End PBXProject section */
@@ -343,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "SayHi" */ = {
+		A3AEBE572E97BB00003485A9 /* Build configuration list for PBXNativeTarget "SayHi!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3AEBE582E97BB00003485A9 /* Debug */,

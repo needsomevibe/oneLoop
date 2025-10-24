@@ -14,11 +14,13 @@ struct ChallengesView: View {
     var body: some View {
         VStack(spacing: 16) {
             // App header
-            header()
-                .padding(.top, 2)
+            /*header()
+                .padding(.top, 2)*/
 
             // Screen title
             ScreenTitle(title: level.title)
+                .foregroundStyle(Color.blueDemon)
+                
 
             // Content
             ScrollView {

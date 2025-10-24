@@ -23,13 +23,14 @@ struct CompleteChallengeCard: View {
                 .frame(width: 350, height: 480)
                 .overlay(
                     HStack {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(challenge.title)
+                        VStack(alignment: .leading, spacing: 5) {
+                            /*Text(challenge.title)
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.black)
+                                .foregroundColor(.black)*/
                             Text(challenge.subtitle)
-                                .font(.subheadline)
+                                .font(.title3)
+                                .fontWeight(.semibold)
                                 .foregroundColor(.black.opacity(0.7))
                             Text("Objective:")
                                 .font(.headline)

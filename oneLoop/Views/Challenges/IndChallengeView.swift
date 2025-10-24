@@ -14,6 +14,7 @@ struct IndChallengeView: View {
     @Environment(\.dismiss) var dismiss // 👈 Agregado
 
     @State private var showPopup = false
+    @State private var showPopup2 = false
 
     private var motivationalMessage: String {
         switch challenge.title.lowercased() {
@@ -29,6 +30,21 @@ struct IndChallengeView: View {
             return "You did it — you reached out and spoke up! Even tiny steps are huge wins when facing anxiety."
         }
     }
+    
+    private var nonmotivationalMessage: String {
+        switch challenge.title.lowercased() {
+            case "challenge 1":
+            return "It’s okay if you didn’t feel ready today — healing takes time, not pressure."
+        case "challenge 2":
+            return "Some days are harder than others, and that’s human. You can come back when it feels right."
+        case "challenge 3":
+            return "Not today doesn’t mean never — you’re still moving forward at your own pace."
+        case "challenge 4":
+            return "You’re allowed to take small steps. Pausing is part of progress too."
+        default:
+            return "Be kind to yourself — courage grows slowly, and you’re still on the journey."
+        }
+    }
 
     var body: some View {
         ZStack {
@@ -41,19 +57,35 @@ struct IndChallengeView: View {
                     onDismiss: {
                         withAnimation {
                             showPopup = false
+                            dismiss()
                         }
                     }
                 )
                 .transition(AnyTransition.scale.combined(with: .opacity))
                 .zIndex(1)
             }
+             if showPopup2 {
+                MotivationalPopupView(
+                    title: "Great job on \(challenge.title)!",
+                    message: nonmotivationalMessage,
+                    onDismiss: {
+                        withAnimation {
+                            showPopup2 = false
+                            dismiss()
+                        }
+                    }
+                )
+                .transition(AnyTransition.scale.combined(with: .opacity))
+                .zIndex(1)
+            }
+            
 
             VStack {
                 HStack {
                     Text(challenge.title)
                         .font(.headline)
-                        .foregroundColor(.black)
-                    Spacer()
+                        .foregroundColor(.blueDemon)
+                    //Spacer()
                 }
                 .padding(.horizontal)
 
@@ -62,7 +94,12 @@ struct IndChallengeView: View {
 
                 HStack {
                     ActionButtonCard(title: "Not Now", icon: "arrowshape.turn.up.left") {
-                        dismiss() // 👈 Ahora ya cierra la vista
+                        withAnimation {
+                            
+                            
+                            showPopup2 = true
+                            
+                        }
                     }
                     ActionButtonCard(title: "Got it!", icon: "hands.clap.fill") {
                         withAnimation {
@@ -71,6 +108,7 @@ struct IndChallengeView: View {
                             }*/
                             progressVM.addCompletedChallenge()
                             showPopup = true
+                            
                         }
                     }
                 }
